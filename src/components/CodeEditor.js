@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import AceEditor from 'react-ace';
-import CoconutMode from './mode-coconut.js';
+import CoconutMode from '../utils/coconut.js';
 import type { EditorProps } from 'react-ace';
 
 import 'brace/theme/dracula';

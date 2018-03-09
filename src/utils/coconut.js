@@ -28,7 +28,10 @@ export class CoconutHighlightRules extends window.ace.acequire(
       '__import__|complex|hash|min|set|apply|delattr|help|next|setattr|' +
       'buffer|dict|hex|object|slice|coerce|dir|id|oct|sorted|intern|' +
       // Coconut-specific
-      'reduce|takewhile|dropwhile|tee|count|makedata|consume|parallel_map';
+      'reduce|takewhile|dropwhile|tee|count|makedata|consume|parallel_map|'+
+      'addpattern|recursive_iterator|concurrent_map|fmap|starmap|reiterable|'+
+      'scan|groupsof|py_chr|py_filter|py_hex|py_input|py_init|py_object|py_oct|'+
+      'py_open|py_print|py_range|py_xrange|py_str|py_map|py_zip|';
     // TODO: Add rest
     var keywordMapper = this.createKeywordMapper(
       {

@@ -9,9 +9,9 @@ export class CoconutHighlightRules extends window.ace.acequire(
     const keywords =
       'and|as|assert|break|class|continue|def|del|elif|else|except|exec|' +
       'finally|for|from|global|if|import|in|is|lambda|not|or|pass|print|' +
-      'raise|return|try|while|with|yield|async|await|data|' +
+      'raise|return|try|while|with|yield|async|await|' +
       // Coconut-specific:
-      'match|case';
+      'match|case|data';
     // TODO: Add rest
 
     const builtinConstants =
@@ -29,7 +29,7 @@ export class CoconutHighlightRules extends window.ace.acequire(
       '__import__|complex|hash|min|set|apply|delattr|help|next|setattr|' +
       'buffer|dict|hex|object|slice|coerce|dir|id|oct|sorted|intern|self|' +
       // Coconut-specific
-      'reduce|takewhile|dropwhile|tee|count|makedata|consume|parallel_map|' +
+      'takewhile|dropwhile|tee|count|makedata|consume|parallel_map|' +
       'addpattern|recursive_iterator|concurrent_map|fmap|__fmap__|starmap|reiterable|' +
       'scan|groupsof|py_chr|py_filter|py_hex|py_input|py_int|py_object|py_oct|' +
       'py_open|py_print|py_range|py_xrange|py_str|py_map|py_zip|';
@@ -38,6 +38,7 @@ export class CoconutHighlightRules extends window.ace.acequire(
       {
         'invalid.deprecated': 'debugger',
         'support.function': builtinFunctions,
+        'variable.language': 'self|cls',
         'constant.language': builtinConstants,
         keyword: keywords,
       },
@@ -63,7 +64,7 @@ export class CoconutHighlightRules extends window.ace.acequire(
           token: 'keyword.operator',
           regex:
             '\\+|\\-|\\*|\\*\\*|\\/|\\/\\/|%|<<|>>|&|\\||\\^|~|<|>|<=|=>|==|!=|<>|=|' +
-            '@|',
+            '@',
         },
       ],
     };

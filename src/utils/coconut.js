@@ -14,7 +14,7 @@ export class CoconutHighlightRules extends window.ace.acequire(
       'match|case|data';
 
     const builtinConstants =
-      'True|False|None|NotImplemented|Ellipsis|__debug__|';
+      'True|False|None|NotImplemented|Ellipsis|__debug__';
 
     const builtinFunctions =
       'abs|divmod|input|open|staticmethod|all|enumerate|int|ord|str|any|' +

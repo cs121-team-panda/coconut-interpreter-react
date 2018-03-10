@@ -46,7 +46,7 @@ export class CoconutHighlightRules extends window.ace.acequire(
       '\\+|\\-|\\*|\\*\\*|\\/|\\/\\/|%|<<|>>|&|\\||\\^|~|<|>|<=|=>|==|!=|<>|=|' +
       //Coconut Specific:
       '@|\\$|`|\\|>|(?:<\\*?)?(?!\\.\\.\\.)\\.\\.(?:\\*?>)?|\\|>|<\\||\\|\\*>|' +
-      '<\\*\\||->|\\?\\??|';
+      '<\\*\\||->|\\?\\??';
 
     const pythonHighlightRules = this.getRules();
     pythonHighlightRules.start = pythonHighlightRules.start.filter(

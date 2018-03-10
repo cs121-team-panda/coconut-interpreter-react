@@ -64,7 +64,9 @@ export class CoconutHighlightRules extends window.ace.acequire(
           token: 'keyword.operator',
           regex:
             '\\+|\\-|\\*|\\*\\*|\\/|\\/\\/|%|<<|>>|&|\\||\\^|~|<|>|<=|=>|==|!=|<>|=|' +
-            '@',
+            //Coconut Specific:
+            '@|\\$|`|\\|>|(?:<\\*?)?(?!\\.\\.\\.)\\.\\.(?:\\*?>)?|\\|>|<\\||\\|\\*>|' +
+            '<\\*\\||->|\\?\\??|',
         },
       ],
     };

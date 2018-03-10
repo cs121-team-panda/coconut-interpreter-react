@@ -45,6 +45,12 @@ export class CoconutHighlightRules extends window.ace.acequire(
       'identifier'
     );
 
+    const operators =
+      '\\+|\\-|\\*|\\*\\*|\\/|\\/\\/|%|<<|>>|&|\\||\\^|~|<|>|<=|=>|==|!=|<>|=|' +
+      //Coconut Specific:
+      '@|\\$|`|\\|>|(?:<\\*?)?(?!\\.\\.\\.)\\.\\.(?:\\*?>)?|\\|>|<\\||\\|\\*>|' +
+      '<\\*\\||->|\\?\\??|';
+
     const pythonHighlightRules = this.getRules();
     pythonHighlightRules.start = pythonHighlightRules.start.filter(
       rule =>
@@ -62,11 +68,7 @@ export class CoconutHighlightRules extends window.ace.acequire(
         },
         {
           token: 'keyword.operator',
-          regex:
-            '\\+|\\-|\\*|\\*\\*|\\/|\\/\\/|%|<<|>>|&|\\||\\^|~|<|>|<=|=>|==|!=|<>|=|' +
-            //Coconut Specific:
-            '@|\\$|`|\\|>|(?:<\\*?)?(?!\\.\\.\\.)\\.\\.(?:\\*?>)?|\\|>|<\\||\\|\\*>|' +
-            '<\\*\\||->|\\?\\??|',
+          regex: operators,
         },
       ],
     };

@@ -24,13 +24,14 @@ type Props = {
 };
 
 type State = {
-  code: string,
+  code: string
 };
 
 export default class Editor extends Component<Props, State> {
-  state = {
-    code: '',
-  };
+  constructor(props) {
+    super(props);
+    this.state = ((typeof (window.initialCode)) === 'undefined') ? { code: '' } : { code: window.initialCode };
+  }
 
   onEditorLoad = (editor: EditorProps) => {
     editor.renderer.setPadding(24);

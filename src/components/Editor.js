@@ -4,17 +4,19 @@ import React, { Component } from 'react';
 import AceEditor from 'react-ace';
 import type { EditorProps } from 'react-ace';
 
+import Drawer from 'material-ui/Drawer';
+import Divider from 'material-ui/Divider';
+import Toolbar from 'material-ui/Toolbar';
+import IconButton from 'material-ui/IconButton';
+import MenuIcon from 'material-ui-icons/Menu';
+import Typography from 'material-ui/Typography';
+
 import 'brace/theme/dracula';
 
-import Header from './Header';
 import styles from './Editor.module.css';
 import errorMarker from '../utils/highlighter';
 import CoconutMode from '../utils/coconut';
-import {
-  aceStyleProps,
-  editorHeaderColor,
-  editorHeaderTextColor,
-} from '../constants';
+import { aceStyleProps } from '../constants';
 
 type Props = {
   runRequest: (code: string) => void,
@@ -25,11 +27,50 @@ type Props = {
 
 type State = {
   code: string,
+  anchor: string,
+  open: boolean,
 };
+
+const drawerWidth = 240;
+
+const styles2 = theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  appFrame: {
+    height: 430,
+    zIndex: 1,
+    overflow: 'hidden',
+    position: 'relative',
+    display: 'flex',
+    width: '100%',
+  },
+  appBar: {
+    width: `calc(100% - ${drawerWidth}px)`,
+  },
+  'appBar-left': {
+    marginLeft: drawerWidth,
+  },
+  'appBar-right': {
+    marginRight: drawerWidth,
+  },
+  drawerPaper: {
+    position: 'relative',
+    width: drawerWidth,
+  },
+  toolbar: theme.mixins.toolbar,
+  content: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.default,
+    padding: theme.spacing.unit * 3,
+  },
+});
 
 export default class Editor extends Component<Props, State> {
   state = {
     code: window.initialCode || '',
+    open: false,
+    anchor: 'left',
   };
 
   onEditorLoad = (editor: EditorProps) => {
@@ -49,26 +90,59 @@ export default class Editor extends Component<Props, State> {
     this.setState({ code: newCode });
   };
 
+  handleDrawerOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleDrawerClose = () => {
+    this.setState({ open: false });
+  };
+
   handleClick = () => {
     if (this.state.code.trim()) this.props.runRequest(this.state.code);
   };
 
   render() {
+    const { anchor, open } = this.state;
+
+    const drawer = (
+      <Drawer
+        variant="persistent"
+        anchor={anchor}
+        open={open}
+        classes={{
+          paper: styles2.drawerPaper,
+        }}
+      >
+        <div className={styles2.toolbar} />
+        <Divider />
+        {/* <List>{mailFolderListItems}</List> */}
+        <Divider />
+        {/* <List>{otherMailFolderListItems}</List> */}
+      </Drawer>
+    );
+
+    let before = null;
+
+    if (anchor === 'left') {
+      before = drawer;
+    }
+
     return (
       <div className={styles.editor}>
-        <Header
-          name="Coconut Editor"
-          color={editorHeaderColor}
-          textColor={editorHeaderTextColor}
-        >
-          <button
-            className={styles.headerButton}
-            onClick={this.handleClick}
-            disabled={this.props.loading}
+        <Toolbar disableGutters={!open}>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={this.handleDrawerOpen}
           >
-            Run
-          </button>
-        </Header>
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="title" color="inherit" noWrap>
+            Persistent drawer
+          </Typography>
+        </Toolbar>
+        {before}
         <AceEditor
           name="code"
           mode="text"

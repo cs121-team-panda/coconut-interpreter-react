@@ -36,6 +36,6 @@ export function runFailure(output: string) {
 }
 
 export type Action =
-  | $Call<typeof runRequest, string>
+  | $Call<typeof runRequest, string, { string: boolean }>
   | $Call<typeof runSuccess, Payload>
   | $Call<typeof runFailure, string>;

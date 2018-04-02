@@ -2,7 +2,7 @@
   grid-area: editor;
 }
 
-.headerButton {
+/* .headerButton {
   height: inherit;
   float: right;
   border: none;
@@ -19,7 +19,7 @@
 .headerButton:disabled {
   color: #999;
   cursor: default;
-}
+} */
 
 .errorMarker {
   position: absolute;

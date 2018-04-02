@@ -14,10 +14,10 @@ export type Payload = {
   pythonError: ?Error,
 };
 
-export function runRequest(code: string) {
+export function runRequest(code: string, args: object) {
   return {
     type: actionTypes.RUN_REQUEST,
-    payload: { code },
+    payload: { code, args },
   };
 }
 

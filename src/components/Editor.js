@@ -17,7 +17,7 @@ import {
 } from '../constants';
 
 type Props = {
-  runRequest: (code: string) => void,
+  runRequest: (code: string, args: object) => void,
   loading: boolean,
   errorLine: ?number,
   errorCall: ?string,
@@ -25,11 +25,13 @@ type Props = {
 
 type State = {
   code: string,
+  args: string,
 };
 
 export default class Editor extends Component<Props, State> {
   state = {
     code: window.initialCode || '',
+    args: window.initialArgs || '{}',
   };
 
   onEditorLoad = (editor: EditorProps) => {
@@ -45,12 +47,13 @@ export default class Editor extends Component<Props, State> {
     return errorMarker(code, errorLine, errorCall, styles.errorMarker);
   };
 
-  handleChange = (newCode: string) => {
-    this.setState({ code: newCode });
+  handleChange = (newCode: string, newArgs: string) => {
+    this.setState({ code: newCode, args: newArgs });
   };
 
   handleClick = () => {
-    if (this.state.code.trim()) this.props.runRequest(this.state.code);
+    if (this.state.code.trim())
+      this.props.runRequest(this.state.code, this.state.args);
   };
 
   render() {

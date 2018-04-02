@@ -17,7 +17,7 @@ import {
 } from '../constants';
 
 type Props = {
-  runRequest: (code: string, args: object) => void,
+  runRequest: (code: string, args: { string: boolean }) => void,
   loading: boolean,
   errorLine: ?number,
   errorCall: ?string,

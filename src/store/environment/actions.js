@@ -14,7 +14,7 @@ export type Payload = {
   pythonError: ?Error,
 };
 
-export function runRequest(code: string, args: object) {
+export function runRequest(code: string, args: { string: boolean }) {
   return {
     type: actionTypes.RUN_REQUEST,
     payload: { code, args },

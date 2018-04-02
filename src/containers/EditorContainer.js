@@ -10,7 +10,7 @@ import * as myActions from '../store/environment/actions';
 import Editor from '../components/Editor';
 
 type Props = {
-  runRequest: (code: string, args: object) => void,
+  runRequest: (code: string, args: { string: boolean }) => void,
   loading: boolean,
   coconutErrorCall: ?string,
   coconutErrorLine: ?number,

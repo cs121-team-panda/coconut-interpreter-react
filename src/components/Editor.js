@@ -9,14 +9,17 @@ import Divider from 'material-ui/Divider';
 import Toolbar from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
+import ChevronRightIcon from 'material-ui-icons/ChevronRight';
 import Typography from 'material-ui/Typography';
+import { List, ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
+import InboxIcon from 'material-ui-icons/MoveToInbox';
 
 import 'brace/theme/dracula';
 
 import styles from './Editor.module.css';
 import errorMarker from '../utils/highlighter';
-import CoconutMode from '../utils/coconut';
 import { aceStyleProps } from '../constants';
+import CoconutMode from '../utils/coconut';
 
 type Props = {
   runRequest: (code: string) => void,
@@ -46,23 +49,69 @@ const styles2 = theme => ({
     width: '100%',
   },
   appBar: {
-    width: `calc(100% - ${drawerWidth}px)`,
+    position: 'absolute',
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
   },
-  'appBar-left': {
+  appBarShift: {
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['margin', 'width'], {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  'appBarShift-left': {
     marginLeft: drawerWidth,
   },
-  'appBar-right': {
+  'appBarShift-right': {
     marginRight: drawerWidth,
+  },
+  menuButton: {
+    marginLeft: 12,
+    marginRight: 20,
+  },
+  hide: {
+    display: 'none',
   },
   drawerPaper: {
     position: 'relative',
     width: drawerWidth,
   },
-  toolbar: theme.mixins.toolbar,
+  drawerHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    padding: '0 8px',
+    ...theme.mixins.toolbar,
+  },
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  'content-left': {
+    marginLeft: -drawerWidth,
+  },
+  'content-right': {
+    marginRight: -drawerWidth,
+  },
+  contentShift: {
+    transition: theme.transitions.create('margin', {
+      easing: theme.transitions.easing.easeOut,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  'contentShift-left': {
+    marginLeft: 0,
+  },
+  'contentShift-right': {
+    marginRight: 0,
   },
 });
 
@@ -98,6 +147,12 @@ export default class Editor extends Component<Props, State> {
     this.setState({ open: false });
   };
 
+  handleChangeAnchor = event => {
+    this.setState({
+      anchor: event.target.value,
+    });
+  };
+
   handleClick = () => {
     if (this.state.code.trim()) this.props.runRequest(this.state.code);
   };
@@ -114,11 +169,23 @@ export default class Editor extends Component<Props, State> {
           paper: styles2.drawerPaper,
         }}
       >
-        <div className={styles2.toolbar} />
+        <div className={styles2.drawerHeader}>
+          <IconButton onClick={this.handleDrawerClose}>
+            <ChevronRightIcon />
+          </IconButton>
+        </div>
         <Divider />
-        {/* <List>{mailFolderListItems}</List> */}
+        <List>
+          <div>
+            <ListItem button>
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary="Inbox" />
+            </ListItem>
+          </div>
+        </List>
         <Divider />
-        {/* <List>{otherMailFolderListItems}</List> */}
       </Drawer>
     );
 
@@ -139,7 +206,7 @@ export default class Editor extends Component<Props, State> {
             <MenuIcon />
           </IconButton>
           <Typography variant="title" color="inherit" noWrap>
-            Persistent drawer
+            COCONUT INTERPRETER
           </Typography>
         </Toolbar>
         {before}

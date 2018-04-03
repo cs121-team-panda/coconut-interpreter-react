@@ -5,14 +5,14 @@ import classNames from 'classnames';
 import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
-import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
+import List, { ListItem, ListItemText } from 'material-ui/List';
+import Menu, { MenuItem } from 'material-ui/Menu';
 import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
 import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
 import ChevronRightIcon from 'material-ui-icons/ChevronRight';
-import InboxIcon from 'material-ui-icons/MoveToInbox';
 
 const drawerWidth = 240;
 
@@ -95,10 +95,19 @@ const styles = theme => ({
   },
 });
 
+const options = [
+  'Show some love to Material-UI',
+  'Show all notification content',
+  'Hide sensitive notification content',
+  'Hide all notification content',
+];
+
 class PersistentDrawer extends React.Component {
   state = {
     open: false,
     anchor: 'left',
+    anchorEl: null,
+    selectedIndex: 1,
   };
 
   handleDrawerOpen = () => {
@@ -115,9 +124,21 @@ class PersistentDrawer extends React.Component {
     });
   };
 
+  handleClickListItem = event => {
+    this.setState({ anchorEl: event.currentTarget });
+  };
+
+  handleMenuItemClick = (event, index) => {
+    this.setState({ selectedIndex: index, anchorEl: null });
+  };
+
+  handleClose = () => {
+    this.setState({ anchorEl: null });
+  };
+
   render() {
     const { classes, theme } = this.props;
-    const { anchor, open } = this.state;
+    const { anchor, open, anchorEl } = this.state;
 
     const drawer = (
       <Drawer
@@ -138,14 +159,39 @@ class PersistentDrawer extends React.Component {
           </IconButton>
         </div>
         <Divider />
-        <List>
-          <ListItem button>
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText primary="Inbox" />
-          </ListItem>
-        </List>
+        <div>
+          <List component="nav">
+            <ListItem
+              button
+              aria-haspopup="true"
+              aria-controls="lock-menu"
+              aria-label="When device is locked"
+              onClick={this.handleClickListItem}
+            >
+              <ListItemText
+                primary="When device is locked"
+                secondary={options[this.state.selectedIndex]}
+              />
+            </ListItem>
+          </List>
+          <Menu
+            id="lock-menu"
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={this.handleClose}
+          >
+            {options.map((option, index) => (
+              <MenuItem
+                key={option}
+                disabled={index === 0}
+                selected={index === this.state.selectedIndex}
+                onClick={event => this.handleMenuItemClick(event, index)}
+              >
+                {option}
+              </MenuItem>
+            ))}
+          </Menu>
+        </div>
         <Divider />
       </Drawer>
     );
@@ -193,7 +239,6 @@ class PersistentDrawer extends React.Component {
               }
             )}
           >
-            {/* <div className={classes.drawerHeader} /> */}
             {this.props.aceEditor}
           </main>
           {after}
@@ -204,8 +249,9 @@ class PersistentDrawer extends React.Component {
 }
 
 PersistentDrawer.propTypes = {
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  theme: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  aceEditor: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
 export default withStyles(styles, { withTheme: true })(PersistentDrawer);

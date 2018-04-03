@@ -76,10 +76,10 @@ const styles = theme => ({
     }),
   },
   'content-left': {
-    marginLeft: -drawerWidth-5,
+    marginLeft: -drawerWidth - 5,
   },
   'content-right': {
-    marginRight: -drawerWidth-5,
+    marginRight: -drawerWidth - 5,
   },
   contentShift: {
     transition: theme.transitions.create('margin', {
@@ -130,7 +130,11 @@ class PersistentDrawer extends React.Component {
       >
         <div className={classes.drawerHeader}>
           <IconButton onClick={this.handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            {theme.direction === 'rtl' ? (
+              <ChevronRightIcon />
+            ) : (
+              <ChevronLeftIcon />
+            )}
           </IconButton>
         </div>
         <Divider />
@@ -180,10 +184,14 @@ class PersistentDrawer extends React.Component {
           </AppBar>
           {before}
           <main
-            className={classNames(classes.content, classes[`content-${anchor}`], {
-              [classes.contentShift]: open,
-              [classes[`contentShift-${anchor}`]]: open,
-            })}
+            className={classNames(
+              classes.content,
+              classes[`content-${anchor}`],
+              {
+                [classes.contentShift]: open,
+                [classes[`contentShift-${anchor}`]]: open,
+              }
+            )}
           >
             {/* <div className={classes.drawerHeader} /> */}
             {this.props.aceEditor}

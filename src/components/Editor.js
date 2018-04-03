@@ -6,7 +6,7 @@ import type { EditorProps } from 'react-ace';
 
 import 'brace/theme/dracula';
 
-import PersistentDrawer from './PersistentDrawer'
+import PersistentDrawer from './PersistentDrawer';
 import styles from './Editor.module.css';
 import errorMarker from '../utils/highlighter';
 import { aceStyleProps } from '../constants';
@@ -50,20 +50,22 @@ export default class Editor extends Component<Props, State> {
   };
 
   render() {
-    var aceEditor = (<AceEditor
-      name="code"
-      mode="text"
-      theme="dracula"
-      value={this.state.code}
-      onChange={this.handleChange}
-      onLoad={this.onEditorLoad}
-      {...aceStyleProps}
-      markers={this.getMarkers()}
-    />);
+    const aceEditor = (
+      <AceEditor
+        name="code"
+        mode="text"
+        theme="dracula"
+        value={this.state.code}
+        onChange={this.handleChange}
+        onLoad={this.onEditorLoad}
+        {...aceStyleProps}
+        markers={this.getMarkers()}
+      />
+    );
 
     return (
       <div className={styles.editor}>
-        <PersistentDrawer aceEditor={aceEditor}/>
+        <PersistentDrawer aceEditor={aceEditor} />
       </div>
     );
   }

@@ -6,14 +6,16 @@ import Button from 'material-ui/Button';
 import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
-import List, { ListItem, ListItemText, ListItemIcon } from 'material-ui/List';
+import List, { ListItem, ListItemText } from 'material-ui/List';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider';
 import IconButton from 'material-ui/IconButton';
-import MenuIcon from 'material-ui-icons/Menu';
+import GearIcon from 'material-ui-icons/Settings';
 import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
 import ChevronRightIcon from 'material-ui-icons/ChevronRight';
+
+import { editorHeaderColor } from '../constants';
 
 const drawerWidth = 240;
 
@@ -32,6 +34,7 @@ const styles = theme => ({
     flexGrow: 1,
   },
   appBar: {
+    backgroundColor: editorHeaderColor,
     position: 'absolute',
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
@@ -68,13 +71,14 @@ const styles = theme => ({
     justifyContent: 'flex-end',
     padding: '0 8px',
     ...theme.mixins.toolbar,
+    minHeight: '48px !important',
   },
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: 0,
-    marginTop: '50px',
-    height: `calc(100%)px`,
+    marginTop: '48px',
+    height: `calc(100% - 48)px`,
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -101,6 +105,9 @@ const styles = theme => ({
   runButton: {
     right: 0,
     position: 'absolute',
+  },
+  toolbarRoot: {
+    minHeight: 48,
   },
 });
 const optionKeyLabels = {
@@ -218,18 +225,13 @@ class PersistentDrawer extends React.Component {
         }}
       >
         <div className={classes.drawerHeader}>
-          <ListItem>
-            <ListItemText primary="Compilation Parameters" />
-            <ListItemIcon>
-              <IconButton onClick={this.handleDrawerClose}>
-                {theme.direction === 'rtl' ? (
-                  <ChevronRightIcon />
-                ) : (
-                  <ChevronLeftIcon />
-                )}
-              </IconButton>
-            </ListItemIcon>
-          </ListItem>
+          <IconButton onClick={this.handleDrawerClose}>
+            {theme.direction === 'rtl' ? (
+              <ChevronRightIcon />
+            ) : (
+              <ChevronLeftIcon />
+            )}
+          </IconButton>
         </div>
         <Divider />
         <div>
@@ -293,14 +295,17 @@ class PersistentDrawer extends React.Component {
               [classes[`appBarShift-${anchor}`]]: open,
             })}
           >
-            <Toolbar disableGutters={!open} position="static">
+            <Toolbar
+              disableGutters={!open}
+              classes={{ root: classes.toolbarRoot }}
+            >
               <IconButton
                 color="inherit"
                 aria-label="open drawer"
                 onClick={this.handleDrawerOpen}
                 className={classNames(classes.menuButton, open && classes.hide)}
               >
-                <MenuIcon />
+                <GearIcon />
               </IconButton>
               <Typography
                 variant="title"
@@ -310,7 +315,7 @@ class PersistentDrawer extends React.Component {
               >
                 Coconut Interpreter
               </Typography>
-              <Button color="inherit" className={styles.runButton}>
+              <Button color="inherit" className={classes.runButton}>
                 Run
               </Button>
             </Toolbar>

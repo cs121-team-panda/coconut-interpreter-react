@@ -19,10 +19,5 @@
     "flowtype/no-types-missing-file-annotation": 0,
     "react/jsx-filename-extension": "off",
     "prettier/prettier": "error"
-  },
-  "settings": {
-    "flowtype": {
-      "onlyFilesWithFlowAnnotation": true
-    }
   }
 }

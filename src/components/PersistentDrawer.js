@@ -96,8 +96,8 @@ const styles = theme => ({
 });
 const optionKeyLabels = {
   target: 'Allowable Target',
-  strict: 'Strict',
-  minify: 'Minify',
+  strict: 'Enforce code cleanliness standards',
+  minify: 'Reduce size of Compiled Python',
   line_numbers: 'Show line numbers',
   keep_lines: 'Keep line numbers',
   no_tco: 'No TCO',

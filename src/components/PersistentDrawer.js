@@ -289,7 +289,7 @@ class PersistentDrawer extends React.Component {
                 <MenuIcon />
               </IconButton>
               <Typography variant="title" color="inherit" noWrap>
-                Persistent drawer
+                Coconut Interpreter
               </Typography>
             </Toolbar>
           </AppBar>

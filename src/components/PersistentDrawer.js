@@ -95,19 +95,38 @@ const styles = theme => ({
   },
 });
 
-const options = [
-  'Show some love to Material-UI',
-  'Show all notification content',
-  'Hide sensitive notification content',
-  'Hide all notification content',
-];
+const options = {
+  target: [
+    'Allowable Targets',
+    'Current version (sys)',
+    'Python >= 2.6',
+    'Python >= 2.7',
+    'Python >= 3.2',
+    'Python >= 3.3',
+    'Python >= 3.5',
+    'Python >= 3.6',
+  ],
+  strict: ['Strict', 'False', 'True'],
+  minify: ['Minify', 'False', 'True'],
+  line_numbers: ['line_numbers', 'False', 'True'],
+};
 
 class PersistentDrawer extends React.Component {
   state = {
     open: false,
     anchor: 'left',
-    anchorEl: null,
-    selectedIndex: 1,
+    anchorEl: {
+      target: null,
+      strict: null,
+      minify: null,
+      line_numbers: null,
+    },
+    selectedIndex: {
+      target: 1,
+      strict: 1,
+      minify: 1,
+      line_numbers: 1,
+    },
   };
 
   handleDrawerOpen = () => {
@@ -124,16 +143,41 @@ class PersistentDrawer extends React.Component {
     });
   };
 
-  handleClickListItem = event => {
-    this.setState({ anchorEl: event.currentTarget });
+  handleClickListItem = (event, value) => {
+    console.log('handleClickListItem');
+    console.log(this.state);
+    this.setState({
+      anchorEl: {
+        ...this.state.anchorEl,
+        [value]: event.currentTarget,
+      },
+    });
   };
 
-  handleMenuItemClick = (event, index) => {
-    this.setState({ selectedIndex: index, anchorEl: null });
+  handleMenuItemClick = (event, index, value) => {
+    console.log('handleMenuItemClick');
+    console.log(this.state);
+    this.setState({
+      selectedIndex: {
+        ...this.state.selectedIndex,
+        [value]: index,
+      },
+      anchorEl: {
+        ...this.state.anchorEl,
+        [value]: null,
+      },
+    });
   };
 
-  handleClose = () => {
-    this.setState({ anchorEl: null });
+  handleClose = value => {
+    console.log('handleClose');
+    console.log(this.state);
+    this.setState({
+      anchorEl: {
+        ...this.state.anchorEl,
+        [value]: null,
+      },
+    });
   };
 
   render() {
@@ -164,28 +208,61 @@ class PersistentDrawer extends React.Component {
             <ListItem
               button
               aria-haspopup="true"
-              aria-controls="lock-menu"
-              aria-label="When device is locked"
-              onClick={this.handleClickListItem}
+              aria-controls="target"
+              aria-label="Allowable Targets"
+              onClick={event => this.handleClickListItem(event, 'target')}
             >
               <ListItemText
-                primary="When device is locked"
-                secondary={options[this.state.selectedIndex]}
+                primary="Allowable Targets"
+                secondary={options.target[this.state.selectedIndex.target]}
+              />
+            </ListItem>
+            <ListItem
+              button
+              aria-haspopup="true"
+              aria-controls="strict"
+              aria-label="Strict"
+              onClick={event => this.handleClickListItem(event, 'strict')}
+            >
+              <ListItemText
+                primary="Strict"
+                secondary={options.strict[this.state.selectedIndex.strict]}
               />
             </ListItem>
           </List>
           <Menu
-            id="lock-menu"
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
+            id="lock-menu-target"
+            anchorEl={anchorEl.target}
+            open={Boolean(anchorEl.target)}
             onClose={this.handleClose}
           >
-            {options.map((option, index) => (
+            {options.target.map((option, index) => (
               <MenuItem
                 key={option}
                 disabled={index === 0}
-                selected={index === this.state.selectedIndex}
-                onClick={event => this.handleMenuItemClick(event, index)}
+                selected={index === this.state.selectedIndex.target}
+                onClick={event =>
+                  this.handleMenuItemClick(event, index, 'target')
+                }
+              >
+                {option}
+              </MenuItem>
+            ))}
+          </Menu>
+          <Menu
+            id="lock-menu-strict"
+            anchorEl={anchorEl.strict}
+            open={Boolean(anchorEl.strict)}
+            onClose={this.handleClose}
+          >
+            {options.strict.map((option, index) => (
+              <MenuItem
+                key={option}
+                disabled={index === 0}
+                selected={index === this.state.selectedIndex.strict}
+                onClick={event =>
+                  this.handleMenuItemClick(event, index, 'strict')
+                }
               >
                 {option}
               </MenuItem>

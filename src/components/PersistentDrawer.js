@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
 import classNames from 'classnames';
+import { withStyles } from 'material-ui/styles';
+import Button from 'material-ui/Button';
 import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
-import List, { ListItem, ListItemText } from 'material-ui/List';
+import List, { ListItem, ListItemText, ListItemIcon } from 'material-ui/List';
 import Menu, { MenuItem } from 'material-ui/Menu';
 import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider';
@@ -20,11 +21,15 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
   },
+  flex: {
+    flex: 1,
+  },
   appFrame: {
     zIndex: 1,
     position: 'relative',
     display: 'flex',
     width: '100%',
+    flexGrow: 1,
   },
   appBar: {
     position: 'absolute',
@@ -92,6 +97,10 @@ const styles = theme => ({
   },
   'contentShift-right': {
     marginRight: 0,
+  },
+  runButton: {
+    right: 0,
+    position: 'absolute',
   },
 });
 const optionKeyLabels = {
@@ -209,13 +218,18 @@ class PersistentDrawer extends React.Component {
         }}
       >
         <div className={classes.drawerHeader}>
-          <IconButton onClick={this.handleDrawerClose}>
-            {theme.direction === 'rtl' ? (
-              <ChevronRightIcon />
-            ) : (
-              <ChevronLeftIcon />
-            )}
-          </IconButton>
+          <ListItem>
+            <ListItemText primary="Compilation Parameters" />
+            <ListItemIcon>
+              <IconButton onClick={this.handleDrawerClose}>
+                {theme.direction === 'rtl' ? (
+                  <ChevronRightIcon />
+                ) : (
+                  <ChevronLeftIcon />
+                )}
+              </IconButton>
+            </ListItemIcon>
+          </ListItem>
         </div>
         <Divider />
         <div>
@@ -279,7 +293,7 @@ class PersistentDrawer extends React.Component {
               [classes[`appBarShift-${anchor}`]]: open,
             })}
           >
-            <Toolbar disableGutters={!open}>
+            <Toolbar disableGutters={!open} position="static">
               <IconButton
                 color="inherit"
                 aria-label="open drawer"
@@ -288,9 +302,17 @@ class PersistentDrawer extends React.Component {
               >
                 <MenuIcon />
               </IconButton>
-              <Typography variant="title" color="inherit" noWrap>
+              <Typography
+                variant="title"
+                color="inherit"
+                className={styles.flex}
+                noWrap
+              >
                 Coconut Interpreter
               </Typography>
+              <Button color="inherit" className={styles.runButton}>
+                Run
+              </Button>
             </Toolbar>
           </AppBar>
           {before}

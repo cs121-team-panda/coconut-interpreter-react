@@ -110,6 +110,7 @@ const styles = theme => ({
     minHeight: 48,
   },
 });
+
 const optionKeyLabels = {
   target: 'Allowable Target',
   strict: 'Enforce code cleanliness standards',
@@ -118,6 +119,7 @@ const optionKeyLabels = {
   keep_lines: 'Keep line numbers',
   no_tco: 'No TCO',
 };
+
 const optionKeys = [
   'target',
   'strict',
@@ -126,6 +128,7 @@ const optionKeys = [
   'keep_lines',
   'no_tco',
 ];
+
 const options = {
   target: [
     'Allowable Targets',

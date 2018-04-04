@@ -96,7 +96,11 @@ class Editor extends Component<Props, State> {
 
     return (
       <div className={styles.editor}>
-        <PersistentDrawer aceEditor={aceEditor} />
+        <PersistentDrawer
+          aceEditor={aceEditor}
+          handleClick={this.handleClick}
+          loading={this.props.loading}
+        />
       </div>
     );
   }

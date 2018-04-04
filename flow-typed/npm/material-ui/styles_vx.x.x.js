@@ -102,9 +102,7 @@ declare module 'material-ui/styles/createBreakpoints.js' {
   declare module.exports: $Exports<'material-ui/styles/createBreakpoints'>;
 }
 declare module 'material-ui/styles/createGenerateClassName.js' {
-  declare module.exports: $Exports<
-    'material-ui/styles/createGenerateClassName'
-  >;
+  declare module.exports: $Exports<'material-ui/styles/createGenerateClassName'>;
 }
 declare module 'material-ui/styles/createMixins.js' {
   declare module.exports: $Exports<'material-ui/styles/createMixins'>;

@@ -11,6 +11,7 @@ import PersistentDrawer from './PersistentDrawer';
 import errorMarker from '../utils/highlighter';
 import { aceStyleProps } from '../constants';
 import CoconutMode from '../utils/coconut';
+import type { Args } from '../store/environment/actions';
 
 const styles = () => ({
   editor: {
@@ -40,7 +41,7 @@ const styles = () => ({
 });
 
 type Props = {
-  runRequest: (code: string, args: string) => void,
+  runRequest: (code: string, args: Args) => void,
   loading: boolean,
   errorLine: ?number,
   errorCall: ?string,
@@ -49,7 +50,7 @@ type Props = {
 
 type State = {
   code: string,
-  args: string,
+  args: Args,
 };
 
 class Editor extends Component<Props, State> {
@@ -71,8 +72,8 @@ class Editor extends Component<Props, State> {
     return errorMarker(code, errorLine, errorCall, classes.errorMarker);
   };
 
-  handleChange = (newCode: string, newArgs: string) => {
-    this.setState({ code: newCode, args: newArgs });
+  handleChange = (newCode: string) => {
+    this.setState({ code: newCode });
   };
 
   handleClick = () => {

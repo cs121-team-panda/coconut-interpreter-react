@@ -25,6 +25,7 @@ const styles = () => ({
   },
   label: {
     fontSize: 16,
+    textTransform: 'uppercase',
   },
   headerSwitch: {
     right: 0,
@@ -108,7 +109,7 @@ class Output extends Component<Props, State> {
       <div className={classes.output}>
         <AppBar className={classes.appBar} position="static">
           <Toolbar classes={{ root: classes.toolbarRoot }}>
-            <Typography className={classes.headerText}> Output </Typography>
+            <Typography className={classes.headerText}>Output</Typography>
             <FormControlLabel
               control={
                 <Checkbox
@@ -118,7 +119,7 @@ class Output extends Component<Props, State> {
                   color="flat"
                 />
               }
-              label="PYTHON"
+              label="Python"
               classes={{ label: classes.label }}
               className={classes.headerSwitch}
             />

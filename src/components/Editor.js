@@ -50,13 +50,11 @@ type Props = {
 
 type State = {
   code: string,
-  args: Args,
 };
 
 class Editor extends Component<Props, State> {
   state = {
     code: window.initialCode || '',
-    args: window.initialArgs || '{}',
   };
 
   onEditorLoad = (editor: EditorProps) => {
@@ -76,9 +74,8 @@ class Editor extends Component<Props, State> {
     this.setState({ code: newCode });
   };
 
-  handleClick = () => {
-    if (this.state.code.trim())
-      this.props.runRequest(this.state.code, this.state.args);
+  handleClick = (args: Args) => {
+    if (this.state.code.trim()) this.props.runRequest(this.state.code, args);
   };
 
   render() {

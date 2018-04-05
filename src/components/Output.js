@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import AceEditor from 'react-ace';
 import type { EditorProps } from 'react-ace';
 import { withStyles } from 'material-ui/styles';
-import PropTypes from 'prop-types';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
@@ -15,12 +14,9 @@ import 'brace/mode/text';
 import 'brace/mode/python';
 import 'brace/theme/chrome';
 
-import Header from './Header';
 import errorMarker from '../utils/highlighter';
 import {
   aceStyleProps,
-  outputHeaderColor,
-  outputHeaderTextColor,
 } from '../constants';
 
 const styles = () => ({
@@ -29,12 +25,17 @@ const styles = () => ({
     flexGrow: 1,
   },
   headerSwitch: {
+    right: 0,
+    position: 'absolute',
     float: 'right',
     cursor: 'pointer',
   },
   errorMarker: {
     position: 'absolute',
     background: 'rgba(255, 0, 0, 0.4)',
+  },
+  toolbarRoot: {
+    minHeight: 48,
   },
 });
 
@@ -96,8 +97,10 @@ class Output extends Component<Props, State> {
     const { classes } = this.props;
     return (
       <div className={classes.output}>
-        <AppBar position="static" color="default">
-        <Toolbar>
+        <AppBar 
+            position="static" color="default">
+        <Toolbar 
+            classes={{root: classes.toolbarRoot}}>
           <Typography variant="title" color="inherit">
             Output
           </Typography>

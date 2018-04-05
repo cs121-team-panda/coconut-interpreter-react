@@ -14,7 +14,7 @@ import 'brace/mode/python';
 import 'brace/theme/chrome';
 
 import errorMarker from '../utils/highlighter';
-import { aceStyleProps, editorHeaderColor, outputHeaderColor } from '../constants';
+import { aceStyleProps, outputHeaderColor } from '../constants';
 
 const styles = () => ({
   output: {
@@ -39,7 +39,7 @@ const styles = () => ({
     minHeight: 48,
   },
   appBar: {
-    backgroundColor: editorHeaderColor,
+    backgroundColor: outputHeaderColor,
     position: 'absolute',
   },
 });

@@ -15,9 +15,7 @@ import 'brace/mode/python';
 import 'brace/theme/chrome';
 
 import errorMarker from '../utils/highlighter';
-import {
-  aceStyleProps,
-} from '../constants';
+import { aceStyleProps } from '../constants';
 
 const styles = () => ({
   output: {
@@ -90,34 +88,32 @@ class Output extends Component<Props, State> {
   };
 
   handleChange = name => event => {
-     this.setState({ [name]: event.target.checked });
-   };
+    this.setState({ [name]: event.target.checked });
+  };
 
   render() {
     const { classes } = this.props;
     return (
       <div className={classes.output}>
-        <AppBar 
-            position="static" color="default">
-        <Toolbar 
-            classes={{root: classes.toolbarRoot}}>
-          <Typography variant="title" color="inherit">
-            Output
-          </Typography>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={this.state.showPython}
-                onChange={this.handleChange('showPython')}
-                value="showPython"
-                color="flat"
-              />
-            }
-            label="PYTHON"
-            classes={{ label: classes.label }}
-            className={classes.headerSwitch}
-          />
-        </Toolbar>
+        <AppBar position="static" color="default">
+          <Toolbar classes={{ root: classes.toolbarRoot }}>
+            <Typography variant="title" color="inherit">
+              Output
+            </Typography>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={this.state.showPython}
+                  onChange={this.handleChange('showPython')}
+                  value="showPython"
+                  color="flat"
+                />
+              }
+              label="PYTHON"
+              classes={{ label: classes.label }}
+              className={classes.headerSwitch}
+            />
+          </Toolbar>
         </AppBar>
         <AceEditor
           name="output"

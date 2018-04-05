@@ -22,6 +22,9 @@ const styles = () => ({
     gridArea: 'output',
     flexGrow: 1,
   },
+  label: {
+    fontSize: 16,
+  },
   headerSwitch: {
     right: 0,
     position: 'absolute',

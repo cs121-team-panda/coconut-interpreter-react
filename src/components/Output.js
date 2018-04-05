@@ -4,6 +4,10 @@ import React, { Component } from 'react';
 import AceEditor from 'react-ace';
 import type { EditorProps } from 'react-ace';
 import { withStyles } from 'material-ui/styles';
+import PropTypes from 'prop-types';
+import AppBar from 'material-ui/AppBar';
+import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
 
 import 'brace/mode/text';
 import 'brace/mode/python';
@@ -16,6 +20,12 @@ import {
   outputHeaderColor,
   outputHeaderTextColor,
 } from '../constants';
+
+const styles = {
+  root: {
+    flexGrow: 1,
+  },
+};
 
 const styles = () => ({
   output: {
@@ -81,6 +91,22 @@ class Output extends Component<Props, State> {
     this.setState(prevState => ({ loadingDots: `${prevState.loadingDots}.` }));
   };
 
+  simpleAppBar = () => {
+  const { classes } = props;
+  return (
+    <div className={classes.root}>
+      <AppBar position="static" color="default">
+        <Toolbar>
+          <Typography variant="title" color="inherit">
+            Title
+          </Typography>
+        </Toolbar>
+      </AppBar>
+    </div>
+  );
+}
+
+
   render() {
     const { classes } = this.props;
     return (
@@ -116,4 +142,6 @@ class Output extends Component<Props, State> {
   }
 }
 
-export default withStyles(styles)(Output);
+//export default withStyles(styles)(Output);
+export default withStyles(styles)(SimpleAppBar);
+

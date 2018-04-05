@@ -9,18 +9,18 @@ import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import { FormControlLabel } from 'material-ui/Form';
 import Checkbox from 'material-ui/Checkbox';
-
 import 'brace/mode/text';
 import 'brace/mode/python';
 import 'brace/theme/chrome';
 
 import errorMarker from '../utils/highlighter';
-import { aceStyleProps } from '../constants';
+import { aceStyleProps, editorHeaderColor, outputHeaderColor } from '../constants';
 
 const styles = () => ({
   output: {
     gridArea: 'output',
     flexGrow: 1,
+    backgroundColor: outputHeaderColor,
   },
   label: {
     fontSize: 16,
@@ -37,6 +37,10 @@ const styles = () => ({
   },
   toolbarRoot: {
     minHeight: 48,
+  },
+  appBar: {
+    backgroundColor: editorHeaderColor,
+    position: 'absolute',
   },
 });
 
@@ -98,10 +102,10 @@ class Output extends Component<Props, State> {
     const { classes } = this.props;
     return (
       <div className={classes.output}>
-        <AppBar position="static" color="default">
+        <AppBar className position="static" color="default">
           <Toolbar classes={{ root: classes.toolbarRoot }}>
             <Typography variant="title" color="inherit">
-              Output
+              OUTPUT
             </Typography>
             <FormControlLabel
               control={

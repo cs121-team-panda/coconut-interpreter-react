@@ -41,7 +41,6 @@ const styles = () => ({
   },
   appBar: {
     backgroundColor: outputHeaderColor,
-    position: 'absolute',
   },
   headerText: {
     fontSize: 16,
@@ -107,7 +106,7 @@ class Output extends Component<Props, State> {
     const { classes } = this.props;
     return (
       <div className={classes.output}>
-        <AppBar className={classes.appBar} position="static" color="default">
+        <AppBar className={classes.appBar} position="static">
           <Toolbar classes={{ root: classes.toolbarRoot }}>
             <Typography className={classes.headerText}> Output </Typography>
             <FormControlLabel

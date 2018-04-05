@@ -102,7 +102,7 @@ const styles = theme => ({
     minHeight: 48,
   },
   gearIcon: {
-    fontSize: 18,
+    fontSize: 21,
   },
 });
 
@@ -272,12 +272,9 @@ class PersistentDrawer extends React.Component {
     );
 
     let before = null;
-    let after = null;
 
     if (anchor === 'left') {
       before = drawer;
-    } else {
-      after = drawer;
     }
 
     return (
@@ -332,7 +329,6 @@ class PersistentDrawer extends React.Component {
           >
             {this.props.aceEditor}
           </main>
-          {after}
         </div>
       </div>
     );

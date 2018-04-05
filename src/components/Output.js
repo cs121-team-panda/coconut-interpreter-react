@@ -96,12 +96,11 @@ class Output extends Component<Props, State> {
     const { classes } = this.props;
     return (
       <div className={classes.output}>
-        <AppBar position="absolute" color="default">
+        <AppBar position="static" color="default">
         <Toolbar>
           <Typography variant="title" color="inherit">
             Output
           </Typography>
-        </Toolbar>
           <FormControlLabel
             control={
               <Checkbox
@@ -115,7 +114,7 @@ class Output extends Component<Props, State> {
             classes={{ label: classes.label }}
             className={classes.headerSwitch}
           />
-
+        </Toolbar>
         </AppBar>
         <AceEditor
           name="output"

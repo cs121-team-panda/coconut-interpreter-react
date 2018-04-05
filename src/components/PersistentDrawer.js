@@ -23,6 +23,7 @@ const styles = theme => ({
     flexGrow: 1,
   },
   headerText: {
+    textTransform: 'uppercase',
     fontSize: 16,
     flex: 1,
   },
@@ -304,7 +305,7 @@ class PersistentDrawer extends React.Component {
                 className={classes.headerText}
                 noWrap
               >
-                COCONUT EDITOR
+                Coconut Editor
               </Typography>
               <Button
                 color="inherit"

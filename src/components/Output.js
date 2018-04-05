@@ -20,6 +20,7 @@ import { aceStyleProps, outputHeaderColor } from '../constants';
 const styles = () => ({
   output: {
     gridArea: 'output',
+    flexGrow: 1,
   },
   label: {
     fontSize: 16,

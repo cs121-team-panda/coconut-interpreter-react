@@ -21,15 +21,10 @@ import {
   outputHeaderTextColor,
 } from '../constants';
 
-const styles = {
-  root: {
-    flexGrow: 1,
-  },
-};
-
 const styles = () => ({
   output: {
     gridArea: 'output',
+    flexGrow: 1,
   },
   headerSwitch: {
     float: 'right',
@@ -91,27 +86,11 @@ class Output extends Component<Props, State> {
     this.setState(prevState => ({ loadingDots: `${prevState.loadingDots}.` }));
   };
 
-  simpleAppBar = () => {
-  const { classes } = props;
-  return (
-    <div className={classes.root}>
-      <AppBar position="static" color="default">
-        <Toolbar>
-          <Typography variant="title" color="inherit">
-            Title
-          </Typography>
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
-}
-
-
   render() {
     const { classes } = this.props;
     return (
       <div className={classes.output}>
-        <Header
+        <AppBar
           name="Output"
           color={outputHeaderColor}
           textColor={outputHeaderTextColor}
@@ -126,7 +105,7 @@ class Output extends Component<Props, State> {
             />
             Python
           </label>
-        </Header>
+        </AppBar>
         <AceEditor
           name="output"
           mode={this.state.showPython ? 'python' : 'text'}
@@ -142,6 +121,4 @@ class Output extends Component<Props, State> {
   }
 }
 
-//export default withStyles(styles)(Output);
-export default withStyles(styles)(SimpleAppBar);
-
+export default withStyles(styles)(Output);

@@ -13,7 +13,6 @@ import Divider from 'material-ui/Divider';
 import IconButton from 'material-ui/IconButton';
 import GearIcon from 'material-ui-icons/Settings';
 import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
-import ChevronRightIcon from 'material-ui-icons/ChevronRight';
 
 import { editorHeaderColor } from '../constants';
 
@@ -23,7 +22,8 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
   },
-  flex: {
+  headerText: {
+    fontSize: 16,
     flex: 1,
   },
   appFrame: {
@@ -50,9 +50,6 @@ const styles = theme => ({
   },
   'appBarShift-left': {
     marginLeft: drawerWidth,
-  },
-  'appBarShift-right': {
-    marginRight: drawerWidth,
   },
   menuButton: {
     marginLeft: 12,
@@ -87,9 +84,6 @@ const styles = theme => ({
   'content-left': {
     marginLeft: -drawerWidth - 5,
   },
-  'content-right': {
-    marginRight: -drawerWidth - 5,
-  },
   contentShift: {
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.easeOut,
@@ -99,15 +93,16 @@ const styles = theme => ({
   'contentShift-left': {
     marginLeft: 0,
   },
-  'contentShift-right': {
-    marginRight: 0,
-  },
   runButton: {
+    fontSize: 15,
     right: 0,
     position: 'absolute',
   },
   toolbarRoot: {
     minHeight: 48,
+  },
+  gearIcon: {
+    fontSize: 18,
   },
 });
 
@@ -215,7 +210,7 @@ class PersistentDrawer extends React.Component {
   };
 
   render() {
-    const { classes, theme } = this.props;
+    const { classes } = this.props;
     const { anchor, open, anchorEl } = this.state;
 
     const drawer = (
@@ -229,11 +224,7 @@ class PersistentDrawer extends React.Component {
       >
         <div className={classes.drawerHeader}>
           <IconButton onClick={this.handleDrawerClose}>
-            {theme.direction === 'rtl' ? (
-              <ChevronRightIcon />
-            ) : (
-              <ChevronLeftIcon />
-            )}
+            <ChevronLeftIcon />
           </IconButton>
         </div>
         <Divider />
@@ -308,15 +299,15 @@ class PersistentDrawer extends React.Component {
                 onClick={this.handleDrawerOpen}
                 className={classNames(classes.menuButton, open && classes.hide)}
               >
-                <GearIcon />
+                <GearIcon className={classes.gearIcon} />
               </IconButton>
               <Typography
                 variant="title"
                 color="inherit"
-                className={styles.flex}
+                className={classes.headerText}
                 noWrap
               >
-                Coconut Interpreter
+                COCONUT EDITOR
               </Typography>
               <Button
                 color="inherit"
@@ -350,7 +341,6 @@ class PersistentDrawer extends React.Component {
 
 PersistentDrawer.propTypes = {
   classes: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
-  theme: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   aceEditor: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   handleClick: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,

@@ -8,6 +8,8 @@ import PropTypes from 'prop-types';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
+import { FormControlLabel } from 'material-ui/Form';
+import Checkbox from 'material-ui/Checkbox';
 
 import 'brace/mode/text';
 import 'brace/mode/python';
@@ -89,27 +91,27 @@ class Output extends Component<Props, State> {
   render() {
     const { classes } = this.props;
     return (
-      <div className={classes.root}>
-        <AppBar
+      <div className={classes.output}>
+        <AppBar>
         <Toolbar>
           <Typography variant="title" color="inherit">
-            Title
+            Output
           </Typography>
         </Toolbar>
-          name="Output"
-          color={outputHeaderColor}
-          textColor={outputHeaderTextColor}
-        >
-          <label className={classes.headerSwitch} htmlFor="pythonSwitch">
-            <input
-              onChange={event =>
-                this.setState({ showPython: event.target.checked })
-              }
-              type="checkbox"
-              id="pythonSwitch"
-            />
-            Python
-          </label>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={this.state.showPython}
+                onChange={this.handleChange('showPython')}
+                value="showPython"
+                color="flat"
+              />
+            }
+            label="PYTHON"
+            classes={{ label: classes.label }}
+            className={classes.headerSwitch}
+          />
+
         </AppBar>
         <AceEditor
           name="output"

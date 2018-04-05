@@ -88,11 +88,15 @@ class Output extends Component<Props, State> {
     this.setState(prevState => ({ loadingDots: `${prevState.loadingDots}.` }));
   };
 
+  handleChange = name => event => {
+     this.setState({ [name]: event.target.checked });
+   };
+
   render() {
     const { classes } = this.props;
     return (
       <div className={classes.output}>
-        <AppBar>
+        <AppBar position="absolute" color="default">
         <Toolbar>
           <Typography variant="title" color="inherit">
             Output

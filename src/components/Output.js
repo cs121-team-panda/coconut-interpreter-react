@@ -89,8 +89,13 @@ class Output extends Component<Props, State> {
   render() {
     const { classes } = this.props;
     return (
-      <div className={classes.output}>
+      <div className={classes.root}>
         <AppBar
+        <Toolbar>
+          <Typography variant="title" color="inherit">
+            Title
+          </Typography>
+        </Toolbar>
           name="Output"
           color={outputHeaderColor}
           textColor={outputHeaderTextColor}

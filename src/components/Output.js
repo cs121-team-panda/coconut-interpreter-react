@@ -136,7 +136,7 @@ class Output extends Component<Props, State> {
         />
         <style jsx>
           {`
-            .${classes.output} > #output > .ace_gutter {
+            div > #output > .ace_gutter {
               background: transparent;
             }
           `}

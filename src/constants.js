@@ -8,7 +8,7 @@ export const aceStyleProps = {
   width: '100%',
   height: 'calc(100%)', // TODO: fix calculation
   editorProps: { $blockScrolling: Infinity },
-  fontSize: 16,
+  fontSize: 14,
 };
 
 export const editorHeaderColor = '#44475a';

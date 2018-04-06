@@ -21,6 +21,9 @@ const styles = () => ({
   output: {
     gridArea: 'output',
     flexGrow: 1,
+    '& #output > .ace_gutter': {
+      background: 'transparent',
+    },
   },
   label: {
     fontSize: 16,
@@ -134,13 +137,6 @@ class Output extends Component<Props, State> {
           {...aceStyleProps}
           markers={this.state.showPython ? this.getMarkers() : []}
         />
-        <style jsx>
-          {`
-            div > #output > .ace_gutter {
-              background: transparent;
-            }
-          `}
-        </style>
       </div>
     );
   }

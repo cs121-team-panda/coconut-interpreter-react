@@ -1,5 +1,6 @@
 export const aceStyleProps = {
-  showGutter: false,
+  showGutter: true,
+  showLineNumbers: true,
   highlightActiveLine: false,
   showPrintMargin: false,
   wrapEnabled: true,
@@ -7,7 +8,8 @@ export const aceStyleProps = {
   setOptions: { indentedSoftWrap: false, displayIndentGuides: false },
   width: '100%',
   height: 'calc(100%)', // TODO: fix calculation
-  editorProps: { $blockScrolling: Infinity },
+  editorProps: { $blockScrolling: Infinity, backgroundColor: 'transparent' },
+  fontSize: 16,
 };
 
 export const editorHeaderColor = '#44475a';

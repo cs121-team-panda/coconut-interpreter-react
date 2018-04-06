@@ -134,6 +134,13 @@ class Output extends Component<Props, State> {
           {...aceStyleProps}
           markers={this.state.showPython ? this.getMarkers() : []}
         />
+        <style jsx>
+          {`
+            .${classes.output} > #output > .ace_gutter {
+              background: transparent;
+            }
+          `}
+        </style>
       </div>
     );
   }

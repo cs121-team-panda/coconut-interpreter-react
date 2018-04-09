@@ -15,6 +15,8 @@ import 'brace/mode/python';
 import 'brace/theme/chrome';
 
 import errorMarker from '../utils/highlighter';
+import traceErrorMarker from '../utils/traceHighlighter';
+
 import {
   aceStyleProps,
   outputHeaderColor,
@@ -95,6 +97,12 @@ class Output extends Component<Props, State> {
     return errorMarker(python, errorLine, errorCall, classes.errorMarker);
   };
 
+  getTraceMarkers = () => {
+    if (this.props.loading) return [];
+    const { value, errorCall, classes } = this.props;
+    return traceErrorMarker(value, errorCall, classes.errorMarker);
+  };
+
   getValue = () => {
     if (this.props.loading) return this.state.loadingDots;
     return this.state.showPython ? this.props.python : this.props.value;
@@ -138,7 +146,9 @@ class Output extends Component<Props, State> {
           onLoad={this.onEditorLoad}
           readOnly
           {...aceStyleProps}
-          markers={this.state.showPython ? this.getMarkers() : []}
+          markers={
+            this.state.showPython ? this.getMarkers() : this.getTraceMarkers()
+          }
         />
       </div>
     );

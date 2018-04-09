@@ -116,7 +116,7 @@ const optionKeys = ['target'];
 const options = {
   target: [
     'target',
-    'Current latest version (Default)',
+    'Latest version (Default)',
     'Python 2.6',
     'Python 2.7',
     'Python 3.2',

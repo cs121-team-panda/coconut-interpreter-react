@@ -16,7 +16,6 @@ import 'brace/theme/chrome';
 
 import errorMarker from '../utils/highlighter';
 import traceErrorMarker from '../utils/traceHighlighter';
-
 import {
   aceStyleProps,
   outputHeaderColor,

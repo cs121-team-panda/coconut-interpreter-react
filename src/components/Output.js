@@ -110,6 +110,7 @@ class Output extends Component<Props, State> {
       value,
       coconutErrorCall,
       pythonErrorCall,
+      // TODO: Use red text instead of red highlight.
       classes.errorMarker
     );
   };

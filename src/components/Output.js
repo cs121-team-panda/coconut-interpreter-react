@@ -41,9 +41,6 @@ const styles = () => ({
     position: 'absolute',
     background: 'rgba(255, 0, 0, 0.4)',
   },
-  errorTraceMarker: {
-    position: 'absolute',
-  },
   toolbarRoot: {
     minHeight: 48,
     padding: '0 24px',
@@ -55,12 +52,6 @@ const styles = () => ({
   headerText: {
     flex: 1,
     ...headerTextStyle,
-  },
-  textOutput: {
-    background: 'blue',
-    '&': {
-      color: 'red',
-    },
   },
 });
 
@@ -113,13 +104,8 @@ class Output extends Component<Props, State> {
 
   getTraceMarkers = () => {
     if (this.props.loading) return [];
-    const { value, coconutErrorCall, pythonErrorCall, classes } = this.props;
-    return traceErrorMarker(
-      value,
-      coconutErrorCall,
-      pythonErrorCall,
-      classes.errorTraceMarker
-    );
+    const { value, coconutErrorCall, pythonErrorCall } = this.props;
+    return traceErrorMarker(value, coconutErrorCall, pythonErrorCall, {});
   };
 
   getValue = () => {

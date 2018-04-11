@@ -227,14 +227,16 @@ class PersistentDrawer extends React.Component<Props, State> {
     element.download = 'coconut.coco';
     if (document.body != null) {
       document.body.appendChild(element);
-      element.click();
-
-      // Timeout to prevent the element being removed too soon in some browsers like Firefox
-      setTimeout(() => {
-        document.body.removeChild(element);
-        window.URL.revokeObjectURL(element.href);
-      }, 100);
     }
+    element.click();
+
+    // Timeout to prevent the element being removed too soon in some browsers like Firefox
+    setTimeout(() => {
+      if (document.body != null) {
+        document.body.removeChild(element);
+      }
+      window.URL.revokeObjectURL(element.href);
+    }, 100);
   };
 
   render() {

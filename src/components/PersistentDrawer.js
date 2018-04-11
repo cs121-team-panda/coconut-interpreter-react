@@ -116,6 +116,9 @@ const styles = (theme: Theme) => ({
     margin: 0,
     ...headerTextStyle,
   },
+  downloadIcon: {
+    fontSize: 20,
+  },
 });
 
 const optionKeyLabels = {
@@ -341,7 +344,7 @@ class PersistentDrawer extends React.Component<Props, State> {
                 className={classes.downloadButton}
                 onClick={() => this.handleDownloadClick(coconutCode)}
               >
-                <SaveIcon />
+                <SaveIcon className={classes.downloadIcon} />
               </IconButton>
               <Button
                 color="inherit"

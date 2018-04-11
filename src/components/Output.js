@@ -101,12 +101,6 @@ class Output extends Component<Props, State> {
     );
   };
 
-  getTraceMarkers = () => {
-    if (this.props.loading) return [];
-    const { value, coconutErrorCall, pythonErrorCall } = this.props;
-    return errorMarker(value, coconutErrorCall, pythonErrorCall, {});
-  };
-
   getValue = () => {
     if (this.props.loading) return this.state.loadingDots;
     return this.state.showPython ? this.props.python : this.props.value;
@@ -150,9 +144,7 @@ class Output extends Component<Props, State> {
           onLoad={this.onEditorLoad}
           readOnly
           {...aceStyleProps}
-          markers={
-            this.state.showPython ? this.getMarkers() : this.getTraceMarkers()
-          }
+          markers={this.state.showPython ? this.getMarkers() : []}
           style={pythonErrorCall ? { color: 'red' } : {}}
         />
       </div>

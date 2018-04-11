@@ -15,7 +15,6 @@ import 'brace/mode/python';
 import 'brace/theme/chrome';
 
 import errorMarker from '../utils/highlighter';
-import traceErrorMarker from '../utils/traceHighlighter';
 import {
   aceStyleProps,
   outputHeaderColor,
@@ -105,7 +104,7 @@ class Output extends Component<Props, State> {
   getTraceMarkers = () => {
     if (this.props.loading) return [];
     const { value, coconutErrorCall, pythonErrorCall } = this.props;
-    return traceErrorMarker(value, coconutErrorCall, pythonErrorCall, {});
+    return errorMarker(value, coconutErrorCall, pythonErrorCall, {});
   };
 
   getValue = () => {

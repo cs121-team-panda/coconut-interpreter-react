@@ -39,7 +39,6 @@ const styles = () => ({
   },
   errorMarker: {
     position: 'absolute',
-    background: 'rgba(255, 0, 0, 0.4)',
   },
   toolbarRoot: {
     minHeight: 48,
@@ -52,6 +51,12 @@ const styles = () => ({
   headerText: {
     flex: 1,
     ...headerTextStyle,
+  },
+  textOutput: {
+    background: 'blue',
+    '&': {
+      color: 'red',
+    },
   },
 });
 
@@ -109,7 +114,6 @@ class Output extends Component<Props, State> {
       value,
       coconutErrorCall,
       pythonErrorCall,
-      // TODO: Use red text instead of red highlight.
       classes.errorMarker
     );
   };
@@ -128,7 +132,7 @@ class Output extends Component<Props, State> {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, pythonErrorCall } = this.props;
     return (
       <div className={classes.output}>
         <AppBar className={classes.appBar} position="static">
@@ -160,6 +164,7 @@ class Output extends Component<Props, State> {
           markers={
             this.state.showPython ? this.getMarkers() : this.getTraceMarkers()
           }
+          style={pythonErrorCall ? { color: 'red' } : {}}
         />
       </div>
     );

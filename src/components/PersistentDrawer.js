@@ -225,7 +225,9 @@ class PersistentDrawer extends React.Component<Props, State> {
     const file = new Blob([code], { type: 'text/plain' });
     element.href = URL.createObjectURL(file);
     element.download = 'coconut.coco';
-    document.body.appendChild(element);
+    if (document.body != null) {
+      document.body.appendChild(element);
+    }
     element.click();
 
     // Timeout to prevent the element being removed too soon in some browsers like Firefox

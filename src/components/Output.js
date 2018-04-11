@@ -39,6 +39,10 @@ const styles = () => ({
   },
   errorMarker: {
     position: 'absolute',
+    background: 'rgba(255, 0, 0, 0.4)',
+  },
+  errorTraceMarker: {
+    position: 'absolute',
   },
   toolbarRoot: {
     minHeight: 48,
@@ -114,7 +118,7 @@ class Output extends Component<Props, State> {
       value,
       coconutErrorCall,
       pythonErrorCall,
-      classes.errorMarker
+      classes.errorTraceMarker
     );
   };
 

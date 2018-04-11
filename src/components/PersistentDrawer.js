@@ -15,6 +15,7 @@ import IconButton from 'material-ui/IconButton';
 import GearIcon from 'material-ui-icons/Settings';
 import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
 import PlayArrow from 'material-ui-icons/PlayArrow';
+import AceEditor from 'react-ace';
 import type { Theme } from 'material-ui/styles';
 
 import { editorHeaderColor, headerTextStyle } from '../constants';
@@ -136,7 +137,7 @@ const values = {
 };
 
 type Props = {
-  aceEditor: React.Node<any>,
+  aceEditor: React.Element<typeof AceEditor>,
   handleClick: (args: Args) => void,
   loading: boolean,
   classes: $Call<typeof styles, Theme>,

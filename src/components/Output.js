@@ -58,7 +58,7 @@ type Props = {
   loading: boolean,
   value: string,
   python: string,
-  coconutErrorCall: ?string,
+  isError: boolean,
   pythonErrorCall: ?string,
   pythonErrorLine: ?number,
   classes: $Call<typeof styles>,
@@ -115,7 +115,7 @@ class Output extends Component<Props, State> {
   };
 
   render() {
-    const { classes, pythonErrorCall, coconutErrorCall, loading } = this.props;
+    const { classes, isError, loading } = this.props;
     return (
       <div className={classes.output}>
         <AppBar className={classes.appBar} position="static">
@@ -145,11 +145,7 @@ class Output extends Component<Props, State> {
           readOnly
           {...aceStyleProps}
           markers={this.state.showPython ? this.getMarkers() : []}
-          style={
-            !loading && (pythonErrorCall || coconutErrorCall)
-              ? { color: 'red' }
-              : {}
-          }
+          style={!loading && isError ? { color: 'red' } : {}}
         />
       </div>
     );

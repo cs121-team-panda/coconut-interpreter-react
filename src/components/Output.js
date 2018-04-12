@@ -116,6 +116,7 @@ class Output extends Component<Props, State> {
 
   render() {
     const { classes, isError, loading } = this.props;
+    const { showPython } = this.state;
     return (
       <div className={classes.output}>
         <AppBar className={classes.appBar} position="static">
@@ -124,7 +125,7 @@ class Output extends Component<Props, State> {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={this.state.showPython}
+                  checked={showPython}
                   onChange={this.handleChange('showPython')}
                   value="showPython"
                   color="default"
@@ -138,14 +139,14 @@ class Output extends Component<Props, State> {
         </AppBar>
         <AceEditor
           name="output"
-          mode={this.state.showPython ? 'python' : 'text'}
+          mode={showPython ? 'python' : 'text'}
           theme="chrome"
           value={this.getValue()}
           onLoad={this.onEditorLoad}
           readOnly
           {...aceStyleProps}
-          markers={this.state.showPython ? this.getMarkers() : []}
-          style={!loading && isError ? { color: 'red' } : {}}
+          markers={showPython ? this.getMarkers() : []}
+          style={isError && !showPython && !loading ? { color: 'red' } : {}}
         />
       </div>
     );

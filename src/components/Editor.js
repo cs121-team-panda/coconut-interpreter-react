@@ -68,7 +68,7 @@ class Editor extends Component<Props, State> {
   };
 
   handleClick = () => {
-    if (this.state.code.trim())
+    if (!this.props.loading && this.state.code.trim())
       this.props.runRequest(this.state.code, this.props.args);
   };
 

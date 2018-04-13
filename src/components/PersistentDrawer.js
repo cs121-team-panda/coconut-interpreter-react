@@ -65,8 +65,6 @@ const styles = (theme: Theme) => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: 0,
-    marginTop: '48px',
-    height: `calc(100% - 48)px`,
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,

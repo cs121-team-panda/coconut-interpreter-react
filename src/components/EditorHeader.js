@@ -40,11 +40,7 @@ const styles = (theme: Theme) => ({
     display: 'none',
   },
   gearIcon: {
-    fontSize: 21,
-  },
-  downloadButton: {
-    margin: 0,
-    ...headerTextStyle,
+    fontSize: 20,
   },
   downloadIcon: {
     fontSize: 20,
@@ -86,10 +82,7 @@ class EditorHeader extends React.Component<Props> {
   render() {
     const { simple, open, classes } = this.props;
     return (
-      <AppBar
-        className={simple ? classes.appBar : this.props.appBarClassNames}
-        position="static" // TODO -> editor.js
-      >
+      <AppBar className={simple ? classes.appBar : this.props.appBarClassNames}>
         <Toolbar
           classes={{ root: classes.toolbarRoot }}
           disableGutters={!simple && !open}

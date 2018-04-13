@@ -80,7 +80,7 @@ class Editor extends Component<Props, State> {
             name: 'run',
             bindKey: { win: 'Ctrl-Enter', mac: 'Command-Enter' },
             exec: () => {
-              this.handleClick(this.props.args);
+              this.handleClick();
             },
           },
         ]}

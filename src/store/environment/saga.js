@@ -14,7 +14,11 @@ function* runRequest(action: Action) {
     const payload = yield call(run, action.payload);
     yield put(actions.runSuccess(payload));
   } catch (e) {
-    yield put(actions.runFailure(e.toString()));
+    yield put(
+      actions.runFailure(
+        'Error: Failed to fetch output due to timeout or internal error'
+      )
+    );
   }
 }
 

@@ -72,6 +72,15 @@ class Editor extends Component<Props, State> {
         onLoad={this.onEditorLoad}
         {...aceStyleProps}
         markers={this.getMarkers()}
+        commands={[
+          {
+            name: 'run',
+            bindKey: { win: 'Ctrl-Enter', mac: 'Command-Enter' },
+            exec: () => {
+              this.handleClick({});
+            },
+          },
+        ]}
       />
     );
 

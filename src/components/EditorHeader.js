@@ -129,7 +129,6 @@ class EditorHeader extends React.Component<Props> {
                 data-tip="Download"
                 data-for="download"
                 color="inherit"
-                className={classes.downloadButton}
                 onClick={() => this.handleDownloadClick(this.props.coconutCode)}
               >
                 <SaveIcon className={classes.downloadIcon} />

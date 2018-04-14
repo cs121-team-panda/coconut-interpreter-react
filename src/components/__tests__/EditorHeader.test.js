@@ -45,6 +45,13 @@ it('renders zero <IconButton /> components', () => {
   expect(wrapper.find(IconButton)).toHaveLength(0);
 });
 
+it('renders two <IconButton /> components (!simple)', () => {
+  const wrapper = shallow(
+    <EditorHeader simple={false} handleClick={handleClick} loading={false} />
+  ).dive();
+  expect(wrapper.find(IconButton)).toHaveLength(2);
+});
+
 it('renders active run button while not loading', () => {
   const wrapper = shallow(
     <EditorHeader simple handleClick={handleClick} loading={false} />

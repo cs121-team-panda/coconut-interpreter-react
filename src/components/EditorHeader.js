@@ -135,7 +135,16 @@ class EditorHeader extends React.Component<Props> {
               </IconButton>
             </>
           )}
+          <ReactTooltip
+            id="run"
+            className={classes.tooltip}
+            place="bottom"
+            type="dark"
+            effect="solid"
+          />
           <Button
+            data-tip="⌘ + Enter"
+            data-for="run"
             color="inherit"
             className={classes.runButton}
             onClick={this.props.handleClick}

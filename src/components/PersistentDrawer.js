@@ -326,7 +326,7 @@ class PersistentDrawer extends React.Component<Props, State> {
               <ReactTooltip
                 id="settings"
                 className={classes.tooltip}
-                place="bottom"
+                place="right"
                 type="dark"
                 effect="solid"
               />

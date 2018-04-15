@@ -323,6 +323,13 @@ class PersistentDrawer extends React.Component<Props, State> {
               disableGutters={!open}
               classes={{ root: classes.toolbarRoot }}
             >
+              <ReactTooltip
+                id="settings"
+                className={classes.tooltip}
+                place="bottom"
+                type="dark"
+                effect="solid"
+              />
               <IconButton
                 data-tip="Settings"
                 data-for="settings"
